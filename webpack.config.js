@@ -10,7 +10,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     compress: false,
     port: 9000,
   },
