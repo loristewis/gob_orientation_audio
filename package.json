@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --https --host 0.0.0.0",
     "prettify": "prettier --config prettier.config.js --write 'src/**'",
     "build": "webpack-cli"
   },
@@ -16,10 +16,12 @@
     "@babel/preset-env": "^7.15.8",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.4.0",
     "prettier": "^2.4.1",
-    "webpack": "^5.58.2",
+    "sass": "^1.43.2",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.3.0",
     "webpack-cli": "^4.9.0",
     "webpack-dev-server": "^4.3.1"
-  },
-  "dependencies": {}
+  }
 }
