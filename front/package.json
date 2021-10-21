@@ -17,6 +17,7 @@
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
+    "dotenv-webpack": "^7.0.3",
     "prettier": "^2.4.1",
     "sass": "^1.43.2",
     "sass-loader": "^12.2.0",
