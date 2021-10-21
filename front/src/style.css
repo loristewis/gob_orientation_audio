@@ -1,23 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda&display=swap');
+
 #app {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  /*align-items: center;*/
+  /*justify-content: center;*/
   width: 100vw;
   height: 100vh;
+  font-family: 'Bodoni Moda', serif;
 }
 
 .welcome-screen {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   width: 100vw;
   height: 100vh;
   background: white;
   position: absolute;
 }
 
-.button {
-  width: 200px;
-  height: 100px;
+.button-container {
+  width: 100vw;
+  height: 50px;
 }
+
+.button {
+  width: 100vw;
+  height: 50px;
+  background: antiquewhite;
+  border: 0;
+  border-radius: 0;
+}
+
+.cross {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%);
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.cross_a_pos,
+.cross_a_neg,
+.cross_b_pos,
+.cross_b_neg {
+  position: absolute;
+  background-color: black;
+  height: 2px;
+  width: 2px;
+}
+
+.cross_a_pos,
+.cross_a_neg {
+}
+.cross_a_pos {
+  /*background: blue;*/
+}
+.cross_a_neg {
+  /*background: red;*/
+}
+
+.cross_b_pos,
+.cross_b_neg {
+}
+.cross_b_pos {
+  /*background: black;*/
+}
+.cross_b_neg {
+  /*background: aqua;*/
+}
+
 

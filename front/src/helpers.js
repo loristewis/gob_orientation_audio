@@ -1,5 +1,6 @@
 const getDeviceType = () => {
   const ua = navigator.userAgent;
+  console.log(ua)
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
     return "tablet"
   }
@@ -9,36 +10,11 @@ const getDeviceType = () => {
   return "desktop"
 }
 
-function playOscillator (
-  startTime,
-  endTime,
-  value,
-  type,
-  param
-) {
-  // console.log(type, param)
-  const oscillator = context.createOscillator()
-
-  if (type === 'changes') {
-    oscillator.frequency.setValueAtTime(value, param)
-  } else {
-    oscillator.frequency.value = value
-  }
-
-  oscillator.connect(context.destination)
-  oscillator.start(startTime)
-
-  if (type === 'varies') {
-    setInterval(() => {
-      oscillator.frequency.value = Math.floor(Math.random()* 1000)
-    }, 100)
-  }
-
-  // endTime && (oscillator.stop(endTime))
-  oscillator.stop(endTime || 10)
+function convertRange( value, r1, r2 ) {
+  return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ]
 }
 
 export {
   getDeviceType,
-  playOscillator
+  convertRange
 }
