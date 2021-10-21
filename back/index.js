@@ -20,7 +20,11 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log(`user: ${socket.id}`)
   socket.on('movement', (msg) => {
-    console.log('moves: ' + msg)
+    // console.log(`${socket.id} : ${msg.movements}`)
+    io.emit('movementToDesktop', {
+      device: socket.id,
+      movements: msg.movements
+    })
   })
 })
 
@@ -29,7 +33,5 @@ music(io);
 
 // Start the server
 http.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`listening at http://localhost:${port}`)
 })
-
-console.log(http.address())
