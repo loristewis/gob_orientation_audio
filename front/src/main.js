@@ -1,20 +1,19 @@
 import config from './config.js'
+import { getDeviceType, playOscillator } from './helpers.js'
 import css from "./style.css";
+import { io } from "socket.io-client";
+
+const socket = io("https://bb22-77-159-232-106.ngrok.io")
+socket.on("connect", () => {
+  console.log(`connect: ${socket.id}`)
+})
+socket.on("disconnect", () => {
+  console.log(`disconnect: ${socket.id}`)
+})
 
 const BaseAudioContext = window.AudioContext || window.webkitAudioContext
 const context = new BaseAudioContext()
 const app = document.getElementById('app')
-
-const getDeviceType = () => {
-  const ua = navigator.userAgent;
-  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-    return "tablet"
-  }
-  if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-    return "mobile"
-  }
-  return "desktop"
-};
 
 function requestOrientationPermission() {
   if(window.DeviceOrientationEvent) {
@@ -26,12 +25,14 @@ function requestOrientationPermission() {
             let beta = Math.round(event.beta)
             let gamma =  Math.round(event.gamma)
 
+            socket.emit('movement', [alpha, beta, gamma])
+
             // alpha 0-360
             // beta 0-180
             // gamma 0-180
 
             if (alpha > 10 && alpha < 100) {
-              console.log(alpha)
+              // console.log(alpha)
             }
           })
         }
@@ -85,35 +86,6 @@ function setupButtons() {
   }, false);
 }
 
-function playOscillator(
-  startTime,
-  endTime,
-  value,
-  type,
-  param
-) {
-  // console.log(type, param)
-  const oscillator = context.createOscillator()
-
-  if (type === 'changes') {
-    oscillator.frequency.setValueAtTime(value, param)
-  } else {
-    oscillator.frequency.value = value
-  }
-
-  oscillator.connect(context.destination)
-  oscillator.start(startTime)
-
-  if (type === 'varies') {
-    setInterval(() => {
-      oscillator.frequency.value = Math.floor(Math.random()* 1000)
-    }, 100)
-  }
-
-  // endTime && (oscillator.stop(endTime))
-  oscillator.stop(endTime || 10)
-}
-
 function soundLoop() {
   playOscillator(
     context.currentTime,
@@ -150,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.alert('test')
 
     if (getDeviceType() === 'mobile' || getDeviceType() === 'tablet') {
-      requestOrientationPermission()
+      console.log(requestOrientationPermission())
 
     } else {
       setupButtons()
