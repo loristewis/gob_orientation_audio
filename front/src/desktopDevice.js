@@ -108,18 +108,18 @@ function setupButton() {
 
   const button = document.createElement('button')
   button.className = 'button'
-  button.innerHTML = 'pause'
+  button.innerHTML = config.i18n.pause
 
   let playing = true
 
   button.addEventListener('click', () => {
     if (playing) {
-      button.innerHTML = 'play'
+      button.innerHTML = config.i18n.play
       audioContext.suspend().then(() => {
         console.log('paused')
       })
     } else {
-      button.innerHTML = 'pause'
+      button.innerHTML = config.i18n.pause
       audioContext.resume().then(() => {
         console.log('playing')
       })
