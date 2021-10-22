@@ -1,6 +1,5 @@
 import socket from './socket'
 import config from './config'
-import { convertRange } from './helpers'
 
 const cross = document.createElement('div')
 const gammaPos = document.createElement('div')
@@ -31,7 +30,6 @@ function updateCross(beta, gamma) {
     betaPos.style.height = `${beta*3}px`
     //reset
     betaNeg.style.height = '0px'
-    // betaNeg.style.transform = 'translateX(0px)'
   }
 
   if (gamma > 0) {

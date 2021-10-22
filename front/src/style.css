@@ -26,6 +26,10 @@
   height: 50px;
 }
 
+canvas {
+  filter: blur(100px);
+}
+
 .button {
   width: 100vw;
   height: 50px;

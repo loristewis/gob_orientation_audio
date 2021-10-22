@@ -7,7 +7,6 @@ import {
 } from './mobileDevice'
 import {
   setupButton,
-  soundLoop,
   getOrientations,
   setupSound,
   setupCanvas,
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasLoop()
       getOrientations()
       setupButton()
-      soundLoop()
     }
   })
 })
